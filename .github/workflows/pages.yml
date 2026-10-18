@@ -1,0 +1,35 @@
+name: Publish playable Starship site
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download site
+        run: |
+          curl --fail --location --retry 5 --retry-delay 10 --output site.zip https://github.com/menkuan-ai/starship-flight-lab/releases/download/windows-r12/Starship-Web-R12.zip
+          echo '0cf0a112a35e6a552f15df3055213227a0dcead1185b8e3c93897ebce79650df  site.zip' | sha256sum --check
+          unzip -q site.zip -d _site
+          test -f _site/play/flight.html
+          test "$(du -sb _site | cut -f1)" -lt 1000000000
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+          include-hidden-files: true
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
