@@ -1,8 +1,6 @@
 name: Publish playable Starship site
 on:
   workflow_dispatch:
-  release:
-    types: [published]
 permissions:
   contents: read
   pages: write
@@ -20,8 +18,8 @@ jobs:
     steps:
       - name: Download site
         run: |
-          curl --fail --location --retry 5 --retry-delay 10 --output site.zip https://github.com/menkuan-ai/starship-flight-lab/releases/download/windows-r12/Starship-Web-R12.zip
-          echo '0cf0a112a35e6a552f15df3055213227a0dcead1185b8e3c93897ebce79650df  site.zip' | sha256sum --check
+          curl --fail --location --retry 5 --retry-delay 10 --output site.zip https://github.com/menkuan-ai/starship-flight-lab/releases/download/windows-r13/Starship-Web-R13.zip
+          echo 'ab900632f3d9e708c352c7d581ceeef19dc65dcbc601e0c7c96bbc7b91f8bfff  site.zip' | sha256sum --check
           unzip -q site.zip -d _site
           test -f _site/play/flight.html
           test "$(du -sb _site | cut -f1)" -lt 1000000000
