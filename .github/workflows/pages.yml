@@ -1,4 +1,4 @@
-name: Publish playable Starship site
+name: Publish Starship download page
 on:
   workflow_dispatch:
 permissions:
@@ -16,13 +16,15 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Download site
+      - name: Prepare download page
         run: |
-          curl --fail --location --retry 5 --retry-delay 10 --output site.zip https://github.com/menkuan-ai/starship-flight-lab/releases/download/windows-r13/Starship-Web-R13.zip
-          echo 'ab900632f3d9e708c352c7d581ceeef19dc65dcbc601e0c7c96bbc7b91f8bfff  site.zip' | sha256sum --check
-          unzip -q site.zip -d _site
-          test -f _site/play/flight.html
-          test "$(du -sb _site | cut -f1)" -lt 1000000000
+          mkdir -p _site
+          for file in index.html style.css preview.webp; do
+            curl --fail --location --retry 5 --retry-delay 10 --output "_site/$file" "https://raw.githubusercontent.com/menkuan-ai/starship-flight-lab/main/$file"
+          done
+          touch _site/.nojekyll
+          test -f _site/index.html
+          test ! -d _site/play
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
