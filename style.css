@@ -1,1 +1,44 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:32px}body{margin:0;background:#0b0f14;color:#edf2f5;font:16px/1.75 Inter,"Microsoft YaHei",sans-serif}a{color:inherit;text-decoration:none}a:hover{color:#9edde8}header,footer,main{max-width:1512px;margin:auto}header,footer{padding:20px 6vw;display:flex;align-items:center;justify-content:space-between;gap:22px}header{border-bottom:1px solid #28313b}.brand{font-size:21px;letter-spacing:-.7px}.brand i{color:#a9e7f2;margin-right:8px}.brand b{font-weight:400;color:#afb7bf}nav,.controls{display:flex;gap:22px}nav{font-size:14px}.hero{position:relative;isolation:isolate;background:#06090c;min-height:590px;display:grid;align-items:center;overflow:hidden;border-bottom:1px solid #313843}.hero img{position:absolute;z-index:-2;right:0;top:0;width:72%;height:100%;object-fit:cover}.hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#06090c 18%,rgba(6,9,12,.97) 29%,transparent 64%)}.hero-copy{padding:55px 6vw}.kicker,.meta,figcaption{font-family:"IBM Plex Mono",Consolas,monospace}.kicker{color:#9ad5de;letter-spacing:.18em;font-size:12px;margin:0 0 15px}.hero h1{font-size:clamp(54px,6.3vw,102px);line-height:1.05;letter-spacing:-.065em;margin:0}.hero h1 span{color:#9ad5de}.lead{color:#d1d8de;font-size:18px;line-height:1.75;margin:24px 0}.download{display:inline-block;background:#b5e7eb;color:#112125;font-weight:700;padding:10px 24px;border-radius:4px}.download:hover{background:#e0f7fa;color:#152029}.meta{color:#b1bcc4;font-size:12px;line-height:1.6;margin:14px 0 0}main>section:not(.hero){padding:64px 6vw;border-bottom:1px solid #293139}h2{font-size:clamp(29px,3.1vw,50px);line-height:1.25;margin:0 0 24px;letter-spacing:-.04em}h3{font-size:21px;line-height:1.4;margin:0 0 12px}.features,.specs{display:grid;gap:30px}.features{grid-template-columns:repeat(4,1fr)}article p,#start p,footer p{color:#b4bfc9}article p{margin:0 0 10px}.features article,.specs article{border-top:2px solid #3d535e;padding-top:16px}.gallery-head{display:flex;justify-content:space-between;align-items:baseline}.controls{gap:8px}.controls[hidden]{display:none}button{border:1px solid #51616c;color:#eaf3f7;background:#131a21;border-radius:4px;padding:7px 14px;cursor:pointer}button:hover{background:#263942}figure{margin:0}#screen{display:block;width:100%;height:clamp(230px,43vw,610px);object-fit:contain;background:#070b0e}figcaption{margin-top:10px;color:#adbdc7}.specs{grid-template-columns:1fr 1fr}.textlink,#start p a{text-decoration:underline;text-underline-offset:4px;color:#b4e3e9}#start p{max-width:810px}footer{font-size:13px;padding-block:35px}footer p{max-width:660px}@media(max-width:890px){.features{grid-template-columns:1fr 1fr}}@media(max-width:650px){header{padding:14px 5vw;flex-wrap:wrap;gap:6px}nav{gap:15px;font-size:13px}.hero{min-height:560px;align-items:end}.hero img{width:100%;height:62%;object-position:65% 50%}.hero:after{background:linear-gradient(0deg,#06090c 36%,transparent 78%)}.hero-copy{padding:165px 6vw 26px}.hero h1{font-size:55px}.features,.specs{grid-template-columns:1fr;gap:18px}main>section:not(.hero){padding:38px 6vw}.gallery-head{flex-wrap:wrap;gap:3px}.controls{margin-bottom:12px}footer{align-items:start;flex-direction:column;gap:3px}.lead{font-size:16px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.engineering-intro { margin: -8px 0 28px; color: #b4bfc9; }
+.engineering-group + .engineering-group { margin-top: 44px; }
+.engineering-group h3 { margin-bottom: 14px; }
+.engineering-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.engineering-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 16px; }
+.engineering-card { background: #10161c; border: 1px solid #293139; border-radius: 6px; overflow: hidden; }
+.engineering-image { display: block; background: #080b0f; position: relative; }
+.engineering-image:focus-visible { outline: 2px solid #a9e7f2; outline-offset: -3px; }
+.engineering-image img { display: block; width: 100%; aspect-ratio: 5 / 4; object-fit: contain; }
+.engineering-pair .engineering-image img { aspect-ratio: 16 / 10; }
+.engineering-image span { position: absolute; right: 10px; bottom: 10px; padding: 1px 9px; border: 1px solid #51616c; border-radius: 4px; background: #131a21; }
+.engineering-image:hover span { background: #273943; }
+.engineering-card figcaption { margin: 0; padding: 12px 14px; font-family: inherit; }
+.engineering-card strong { color: #edf2f5; }
+.engineering-card figcaption p { font-size: 14px; margin: 4px 0 0; }
+#engineering-viewer { width: min(94vw, 1330px); max-width: none; color: #edf2f5; background: #10161c; border: 1px solid #51616c; border-radius: 8px; padding: 12px; }
+#engineering-viewer::backdrop { background: rgba(3, 6, 9, .86); }
+#engineering-viewer img { display: block; width: 100%; height: min(72vh, 888px); object-fit: contain; background: #080b0f; }
+.engineering-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.engineering-toolbar p { margin: 0; }
+.engineering-toolbar:first-child { padding-bottom: 10px; }
+.engineering-arrows { padding-top: 10px; }
+@media (max-width: 700px) {
+  .engineering-grid:not(.engineering-pair) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+  header nav { flex-wrap: wrap; gap: 4px 12px; }
+  .engineering-grid { grid-template-columns: 1fr; }
+  .engineering-pair .engineering-image img { aspect-ratio: 5 / 4; }
+}
+
+#engineering .engineering-portraits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.engineering-portraits .engineering-image img { aspect-ratio: 4 / 5; height: clamp(360px, 43vw, 595px); }
+.engineering-details { margin: 16px 0 0; }
+.engineering-feature { margin-bottom: 16px; }
+.engineering-feature .engineering-image img { height: clamp(350px, 59vw, 794px); aspect-ratio: auto; }
+.engineering-engine-detail { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 700px) {
+  .engineering-portraits { gap: 8px; }
+  .engineering-portraits .engineering-image img { height: clamp(230px, 64vw, 425px); }
+  .engineering-portraits figcaption { padding: 9px; }
+  .engineering-feature .engineering-image img { height: clamp(310px, 77vw, 480px); }
+}

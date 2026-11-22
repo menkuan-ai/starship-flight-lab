@@ -29,3 +29,37 @@ document.addEventListener('visibilitychange', schedule);
 motion.addEventListener('change', () => { playing = !motion.matches; schedule(); });
 document.querySelector('.controls').hidden = false;
 schedule();
+
+const engineeringDialog = document.querySelector('#engineering-viewer');
+if (engineeringDialog?.showModal) {
+  const links = [...document.querySelectorAll('.engineering-image')];
+  const image = engineeringDialog.querySelector('img');
+  const title = engineeringDialog.querySelector('#engineering-caption');
+  let selected;
+  let opener;
+  function selectImage(index) {
+    selected = (index + links.length) % links.length;
+    const link = links[selected];
+    image.src = link.href;
+    image.alt = link.querySelector('img').alt;
+    title.textContent = link.closest('figure').querySelector('figcaption strong').textContent;
+  }
+  links.forEach((link, index) => link.addEventListener('click', (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+    event.preventDefault();
+    opener = link;
+    selectImage(index);
+    engineeringDialog.showModal();
+  }));
+  engineeringDialog.querySelector('.engineering-close').onclick = () => engineeringDialog.close();
+  engineeringDialog.querySelectorAll('[data-offset]').forEach(button => {
+    button.onclick = () => selectImage(selected + Number(button.dataset.offset));
+  });
+  engineeringDialog.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      selectImage(selected + (event.key === 'ArrowRight' ? 1 : -1));
+    }
+  });
+  engineeringDialog.addEventListener('close', () => opener?.focus());
+}
