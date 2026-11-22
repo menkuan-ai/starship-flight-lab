@@ -19,7 +19,7 @@ jobs:
       - name: Prepare download page
         run: |
           mkdir -p _site
-          for file in index.html style.css preview.webp; do
+          for file in index.html style.css preview.webp gallery.js flight.webp pad.webp entry.webp; do
             curl --fail --location --retry 5 --retry-delay 10 --output "_site/$file" "https://raw.githubusercontent.com/menkuan-ai/starship-flight-lab/main/$file"
           done
           touch _site/.nojekyll
